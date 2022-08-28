@@ -10,11 +10,12 @@ public class PageObjectDZ11 {
       public PageObjectDZ11(WebDriver driver) {
       }
 
-      public void getCoursesPage(WebDriver driver){
-            this.driver = driver;
+  //    public void getCoursesPage(WebDriver driver){
+  //          this.driver = driver;
+  //          driver.get("https://ithillel.ua/courses/java-basic");
+  //    }
+     static public void getCourseTitle (WebDriver driver){
             driver.get("https://ithillel.ua/courses/java-basic");
-      }
-     static public void getCourseTitle (){
             String titlePage = driver.getTitle();
             if (titlePage.contains("Базовий курс Java для початківців Київ")){
                   System.out.println(titlePage);
