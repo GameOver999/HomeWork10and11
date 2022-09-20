@@ -6,9 +6,7 @@ import data.Human;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class StatemenT {
     private Statement statement;
@@ -66,7 +64,7 @@ public class StatemenT {
     }
 
     //Вернет список юзеров с одинаковыми email, HomeWork;
-    public List<Human> getListUsersWithTheSameEmail(String email) throws SQLException {
+  /*  public void getListUsersWithTheSameEmail(String email) throws SQLException {
         String s = "SELECT * from sys.user where email  =\"" + email + "\"";
         ResultSet resultSet = statement.executeQuery(s);
         List<Human> users = new ArrayList<>();
@@ -74,14 +72,14 @@ public class StatemenT {
             System.out.println(resultSet.getString("email"));
             System.out.println(resultSet.getString("username") + resultSet.getString("id"));
         }
-   /*     while (resultSet.next()) {
+        while (resultSet.next()) {
             users.add(new Human(resultSet.getString("username"),
                     resultSet.getString("email"),
                     resultSet.getString("password"),
                     resultSet.getString("id")));
-        }*/
+        }
         return users;
-    }
+    }*/
 
     //Апдейтит поле password по id, Home Work;
     public void UpdatePassword(String pass, String id) {
@@ -92,6 +90,24 @@ public class StatemenT {
             throw new RuntimeException(e);
         }
     }
+      public List<Human> getListUsersTheSameEmail(String email) throws SQLException {
+        String s = "SELECT * from sys.user where email  =\"" + email + "\"";
+        ResultSet resultSet = statement.executeQuery(s);
+        List<Human> users = new ArrayList<>();
+          while (resultSet.next()){
+              users.add(new Human(resultSet.getString("username"),
+                      resultSet.getString("email"),
+                      resultSet.getString("password"),
+                      resultSet.getString("id")));
+          }
+          while (resultSet.next()) {
+            System.out.println(resultSet.getString("email"));
+            System.out.println(resultSet.getString("username") + resultSet.getString("id"));
+        }
+
+        return users;
+    }
+
 }
    /* public void selectByUserNameEmail(String username, String email) {
         String s = "SELECT * FROM sys.user where username=\"" + username + "\" and email=\"" + email + "\"";
